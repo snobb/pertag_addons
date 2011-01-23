@@ -1,0 +1,11 @@
+Addons for DWM that add custom functionality.
+
+Addons include:
+1. changing active tags using left/right arrows (adding shortcuts for cst_shiftleft, cst_shiftright)
+2. remember layout for each tag (tile, float, monocle). (Modification required: view->cst_view, setlayout->cst_setlayout)
+3. remember mfact values for each tag (MODKEY - h,l) (Config modification required: Step 2 enabled + setmfact->cst_setmfact)
+
+FILES:
+pertag_addons.c    <== addons code. Must be included to config files after tags and layouts declarations
+config_patch.diff  <== patch for default config, bundled with DWM
+README             <== this file
