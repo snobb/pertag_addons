@@ -1,5 +1,8 @@
 Addons for DWM that add custom functionality.
 
+Recent changes:
+* made addons work for dwm-6.0
+
 Addons include:
 1. changing active tags using left/right arrows (adding shortcuts for cst_shiftleft, cst_shiftright)
 2. remember layout for each tag (tile, float, monocle). (Modification required: view->cst_view, setlayout->cst_setlayout)

@@ -73,6 +73,7 @@ cst_view (const Arg *arg)
 #ifdef  MFACT_MEM
   selmon->mfact = tagMFact[getactivetag(selmon->tagset[selmon->seltags])];
 #endif     /* -----  not MFACT_MEM  ----- */
+  focus(NULL);
   arrange(selmon);
 }
 
@@ -110,6 +111,7 @@ cst_shiftleft (const Arg * arg)
 #ifdef  MFACT_MEM
   selmon->mfact = tagMFact[getactivetag(selmon->tagset[selmon->seltags])];
 #endif     /* -----  not MFACT_MEM  ----- */
+  focus(NULL);
   arrange (selmon);
 }
 
@@ -126,6 +128,7 @@ cst_shiftright (const Arg * arg)
 #ifdef  MFACT_MEM
   selmon->mfact = tagMFact[getactivetag(selmon->tagset[selmon->seltags])];
 #endif     /* -----  not MFACT_MEM  ----- */
+  focus(NULL);
   arrange (selmon);
 }
 #endif		/*  -----  not SHIFT_LEFTRIGHT ----- */
