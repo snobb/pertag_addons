@@ -24,10 +24,10 @@
 #define M 2
 
 #define ACTIVE_TAG()        getactivetag(selmon->tagset[selmon->seltags])
-#define GET_LAYOUT(tag)     (void*)tagLayouts[selmon->sellt % MON][(tag)].layout
-#define SET_LAYOUT(tag, l)  tagLayouts[selmon->sellt % MON][(tag)].layout = l
-#define GET_MFACT(tag)      tagLayouts[selmon->sellt % MON][(tag)].mfact
-#define SET_MFACT(tag, m)   tagLayouts[selmon->sellt % MON][(tag)].mfact = m
+#define GET_LAYOUT(tag)     (void*)tagLayouts[selmon->num % MON][(tag) % TAGS].layout
+#define SET_LAYOUT(tag, l)  tagLayouts[selmon->num % MON][(tag) % TAGS].layout = l
+#define GET_MFACT(tag)      tagLayouts[selmon->num % MON][(tag) % TAGS].mfact
+#define SET_MFACT(tag, m)   tagLayouts[selmon->num % MON][(tag) % TAGS].mfact = m
 
 #if defined(LAYOUT_MEM) || defined(MFACT_MEM)
 /* Layouts/mfact values per tag per monitor */
@@ -36,8 +36,6 @@ struct TagInfo {
     float mfact;
 };
 
-/* FIXME: the layout is not initialized initially, but gets to normal after
- * first layout change. */
 static struct TagInfo tagLayouts[MON][TAGS] = {
     {
         { &layouts[T], 0.55 },
@@ -69,7 +67,7 @@ getactivetag(const unsigned int ui)
     int i = 0;
     unsigned int active = i;
     /* if there are more that 1 tag selected - we take the very left */
-    for (i = 0; i < 9; i++) {
+    for (i = 0; i < TAGS; i++) {
         if (((ui>>i) & 1) == 1) {
             active = i;
         }
