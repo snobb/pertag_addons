@@ -1,12 +1,11 @@
-/* pertag_addons.c */
-/* Copyright 2011-2016 Alex Kozadaev <akozadaev at yahoo com> */
+/* @author Alex Kozadaev <akozadaev at yahoo com> */
 
 /* changing active tags using left/right arrows
  * pta_shiftleft, pta_shiftright */
 #define SHIFT_LEFTRIGHT
 
 /* size of monitor buffer (a record per monitor) */
-#define MON  2
+#define MON  3
 #define TAGS 9
 
 /* Tile, Floating and Monocle respectively (needs to be
@@ -53,6 +52,16 @@ static struct TagInfo tagLayouts[MON][TAGS] = {
         { &layouts[T], 0.55, 1 },
         { &layouts[T], 0.55, 1 },
         { &layouts[T], 0.55, 1 },
+    }, {
+        { &layouts[T], 0.55, 1 },
+        { &layouts[T], 0.55, 1 },
+        { &layouts[T], 0.55, 1 },
+        { &layouts[M], 0.55, 1 },
+        { &layouts[T], 0.55, 1 },
+        { &layouts[T], 0.55, 1 },
+        { &layouts[T], 0.55, 1 },
+        { &layouts[T], 0.55, 1 },
+        { &layouts[T], 0.55, 1 },
     },
 };
 
@@ -74,7 +83,7 @@ getactivetag(const unsigned int ui)
 /* Sets custom layouts for each tag.
  * Change all instances of view function to pta_view in config.h */
 static void
-pta_view (const Arg *arg)
+pta_view(const Arg *arg)
 {
     if((arg->ui & TAGMASK) == selmon->tagset[selmon->seltags])
         return;
@@ -113,7 +122,7 @@ pta_setmfact(const Arg *arg)
 /* Keep state of the bar per tag.
  * Change all instances of togglebar function to pta_togglebar in config.h */
 static void
-pta_togglebar (const Arg *arg)
+pta_togglebar(const Arg *arg)
 {
     togglebar(arg);
     SET_BAR(ACTIVE_TAG(), selmon->showbar);
@@ -122,7 +131,7 @@ pta_togglebar (const Arg *arg)
 #ifdef SHIFT_LEFTRIGHT
 /* shift to the next tag. Set in config for shift left shortcut */
 static void
-pta_shiftleft (const Arg * arg)
+pta_shiftleft(const Arg * arg)
 {
     unsigned int cur_ui = selmon->tagset[selmon->seltags];
     selmon->seltags ^= 1; /* toggle sel tagset */
@@ -135,7 +144,7 @@ pta_shiftleft (const Arg * arg)
 
 /* shift to the previous tag. Set in config for shift left shortcut */
 static void
-pta_shiftright (const Arg * arg)
+pta_shiftright(const Arg * arg)
 {
     unsigned int cur_ui = selmon->tagset[selmon->seltags];
     selmon->seltags ^= 1; /* toggle sel tagset */
@@ -148,7 +157,7 @@ pta_shiftright (const Arg * arg)
 #endif  /*  -----  not SHIFT_LEFTRIGHT ----- */
 
 /* exit with custom error code function for dwmguard */
-static void exit_code(const Arg *args)
+static inline void exit_code(const Arg *args)
 {
     exit(args->i);
 }
